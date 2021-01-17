@@ -159,7 +159,7 @@
         </div>
         <!-- Filters End  -->
         <!-- Dynamic Content Begin  -->
-        <!--        <router-view />-->
+        <router-view />
         <!-- Dynamic Content End  -->
         <!-- Footer Section Begin  -->
         <div
