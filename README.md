@@ -1,5 +1,4 @@
-# user-base
-
+# user-base [![Build Status](https://travis-ci.com/gblend/user-base.svg?token=nAPp6xdHhmekbobWYDps&branch=master)](https://travis-ci.com/gblend/user-base)
 ## Project setup
 ```
 npm install
