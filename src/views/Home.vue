@@ -1,6 +1,6 @@
 <template>
   <!-- Left Side Container Begin-->
-  <div class="w-1/2 h-screen md:pl-6 hidden md:block">
+  <div class="w-1/2 h-screen md:pl-6 hidden md:block" id="left-side-bar">
     <div
       class="flex h-screen w-3/4 mx-auto justify-center items-center flex-col gap-4 text-cst_white-100"
     >
@@ -13,6 +13,7 @@
           Welcome to your dashboard, kindly sort through the user base
         </p>
       </div>
+      <!--      Search Input-->
       <div class="mt-4 flex items-center w-full">
         <form action="#" class="flex">
           <button
@@ -81,7 +82,126 @@
   <div
     class="w-full md:w-1/2 h-screen bg-cst_white-400 border border-cst_primary-400 rounded-2xl shadow-2xl"
   >
-    <div class="lg:w-11/12 px-1 mx-auto py-4"></div>
+    <div class="lg:w-11/12 px-1 mx-auto py-4">
+      <!-- Content Begin  -->
+      <div class="mx-auto justify-center items-center pt-2">
+        <div class="flex justify-between items-center">
+          <h3 class="font-bold leading-8 text-2xl tracking-tighter">
+            All Users
+          </h3>
+          <div
+            class="md:hidden text-cst_primary-100 cursor-pointer"
+            id="hamburger"
+          >
+            <i class="fas fa-bars text-3xl"></i>
+          </div>
+        </div>
+        <!-- Filters Begin  -->
+        <div class="mt-1">
+          <small
+            class="font-light text-opacity-80 tracking-tight text-cst_primary-400"
+            >Filter by</small
+          >
+          <div class="flex justify-between items-center mt-1">
+            <div class="items-center w-5/12">
+              <form action="#" class="flex">
+                <button
+                  type="submit"
+                  class="bg-cst_primary-50 p-1.5 rounded-l-full hover:bg-cst_primary-100 focus:outline-none transition ease-out duration-500 hover:opacity-60"
+                >
+                  <i
+                    class="fas fa-search text-cst_gray-400 hover:opacity-40 text-sm p-1"
+                  >
+                  </i>
+                </button>
+                <input
+                  type="text"
+                  name="search-list"
+                  id="search-list"
+                  placeholder="Find in list"
+                  class="tracking-tight bg-cst_primary-50 hover:opacity-60 text-sm hover:bg-cst_primary-100 rounded-r-full p-1.5 focus:outline-none focus:bg-cst_primary-100 transition ease-out duration-500 w-full placeholder-cst_black  placeholder-opacity-50
+                                    "
+                />
+              </form>
+            </div>
+            <div class="items-center pl-12">
+              <select
+                name="select-country"
+                id="select-country"
+                placeholder="Find in list"
+                class="bg-cst_primary-50 hover:opacity-60 text-sm hover:bg-cst_primary-100 rounded-full py-2 px-5 focus:outline-none focus:bg-cst_primary-100 transition ease-out duration-500 w-full opacity-60 appearance-none caret_down"
+              >
+                <option value="">Country</option>
+                <option value="">NG</option>
+                <option value="">GH</option>
+              </select>
+            </div>
+            <div class="flex items-center pl-2">
+              <div
+                class="relative inline-block w-10 align-middle select-none transition duration-500 ease-in transform hover:scale-105"
+              >
+                <input
+                  type="checkbox"
+                  name="toggle"
+                  id="toggle"
+                  class="toggle-checkbox absolute block w-4 h-4 rounded-full bg-cst_white-100 border-4 border-cst_white-100 ml-3.5 appearance-none cursor-pointer"
+                />
+                <label
+                  for="toggle"
+                  class="toggle-label block overflow-hidden h-4 w-8 rounded-full bg-cst_teal-300 cursor-pointer"
+                ></label>
+              </div>
+              <span class="text-cst_black opacity-60 text-sm tracking-tighter"
+                >Show Country</span
+              >
+            </div>
+          </div>
+        </div>
+        <!-- Filters End  -->
+        <!-- Dynamic Content Begin  -->
+        <!--        <router-view />-->
+        <!-- Dynamic Content End  -->
+        <!-- Footer Section Begin  -->
+        <div
+          class="inset-x-0 bottom-10 mx-auto w-full pt-4 px-4 place-self-center flex justify-between"
+        >
+          <div>
+            <button
+              type="button"
+              class="flex text-cst_white-400 rounded-full bg-cst_indigo px-4 py-2 hover:bg-cst_primary-300 transition ease-in duration-500 hover:shadow-md hover:opacity-70 transform hover:scale-105"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="ionicon fill-current"
+                fill="none"
+                height="24"
+                width="24"
+                viewBox="0 0 512 512"
+              >
+                <path
+                  d="M472.7 189.5c-13.26-8.43-29.83-14.56-48.08-17.93A16 16 0 01412 159.28c-7.86-34.51-24.6-64.13-49.15-86.58C334.15 46.45 296.21 32 256 32c-35.35 0-68 11.08-94.37 32a150.13 150.13 0 00-41.95 52.83A16.05 16.05 0 01108 125.8c-27.13 4.9-50.53 14.68-68.41 28.7C13.7 174.83 0 203.56 0 237.6 0 305 55.93 352 136 352h104V224.45c0-8.61 6.62-16 15.23-16.43A16 16 0 01272 224v128h124c72.64 0 116-34.24 116-91.6 0-30.05-13.59-54.57-39.3-70.9zM240 425.42l-36.7-36.64a16 16 0 00-22.6 22.65l64 63.89a16 16 0 0022.6 0l64-63.89a16 16 0 00-22.6-22.65L272 425.42V352h-32z"
+                />
+              </svg>
+              &nbsp; Download results
+            </button>
+          </div>
+          <div>
+            <button
+              class="rounded-lg bg-cst_gray-300 py-0.5 px-3 hover:bg-cst_primary-300 transition ease-in duration-500 hover:shadow-md hover:opacity-70 focus:outline-none"
+            >
+              <i class="fas fa-angle-left text-cst_black"></i>
+            </button>
+
+            <button
+              class="rounded-lg bg-cst_primary-400 py-0.5 px-3 border border-cst_gray-200 hover:bg-cst_primary-300 transition ease-in duration-500 hover:shadow-md hover:opacity-70 focus:outline-none ml-0.5"
+            >
+              <i class="fas fa-angle-right text-cst_white-300"></i>
+            </button>
+          </div>
+        </div>
+        <!-- Footer Section End  -->
+      </div>
+    </div>
   </div>
   <!-- Right Side Container End -->
 </template>
@@ -90,4 +210,14 @@
 export default {
   name: "Home"
 };
+//Handle mobile menu toggle
+const hamburger = document.querySelector("#hamburger");
+const side_menu = document.querySelector("#left-side-bar");
+hamburger?.addEventListener("click", () => {
+  if (side_menu.classList.contains("hidden")) {
+    side_menu.classList.remove("hidden");
+  } else {
+    side_menu.classList.add("hidden");
+  }
+});
 </script>
