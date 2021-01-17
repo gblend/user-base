@@ -1,10 +1,19 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
+import "./index.css";
 
-createApp(App)
-  .use(store)
-  .use(router)
-  .mount("#app");
+const app = createApp(App);
+app.use(store);
+app.use(router);
+app.config.productionTip = true;
+const { isNavigationFailure, NavigationFailureType } = router;
+router.replace("/").catch(e => {
+  if (!isNavigationFailure(e, NavigationFailureType.redirected)) {
+    Promise.reject(e).then(r => {
+      return r;
+    });
+  }
+});
+app.mount("#app");
