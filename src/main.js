@@ -3,6 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import "./index.css";
+require("./config-axios");
 
 const app = createApp(App);
 app.use(store);
