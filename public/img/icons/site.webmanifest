@@ -1,8 +1,8 @@
 {
-"name":"",
-"short_name":"",
-"theme_color":"#ffffff",
-"background_color":"#ffffff",
+"name":"User Base",
+"short_name":"Ubase",
+"theme_color":"#30BBB574",
+"background_color":"#00000029",
 "display":"standalone",
 "description": "",
 "start_url": "/?utm_source=homescreen",
