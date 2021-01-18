@@ -138,11 +138,12 @@
               </form>
             </div>
             <div class="items-center pl-12">
-              <select
+              <label for="select-country"></label
+              ><select
                 name="select-country"
                 id="select-country"
-                placeholder="Find in list"
                 class="bg-cst_primary-50 hover:opacity-60 text-sm hover:bg-cst_primary-100 rounded-full py-2 px-5 focus:outline-none focus:bg-cst_primary-100 transition ease-out duration-500 w-full opacity-60 appearance-none caret_down"
+                :disabled="isDisabledCountryOption"
               >
                 <option value="">Country</option>
                 <option value="">NG</option>
@@ -155,12 +156,14 @@
               >
                 <input
                   type="checkbox"
-                  name="toggle"
-                  id="toggle"
+                  name="toggleCountry"
+                  id="toggleCountry"
                   class="toggle-checkbox absolute block w-4 h-4 rounded-full bg-cst_white-100 border-4 border-cst_white-100 ml-3.5 appearance-none cursor-pointer"
+                  v-model="toggleOffCountry"
+                  @click="disableCountryOption"
                 />
                 <label
-                  for="toggle"
+                  for="toggleCountry"
                   class="toggle-label block overflow-hidden h-4 w-8 rounded-full bg-cst_teal-300 cursor-pointer"
                 ></label>
               </div>
@@ -172,7 +175,7 @@
         </div>
         <!-- Filters End  -->
         <!-- Dynamic Content Begin  -->
-        <router-view class="relative" />
+        <router-view :allUsers="allUsers" class="relative" />
         <!-- Dynamic Content End  -->
         <!-- Footer Section Begin  -->
         <div
@@ -195,17 +198,19 @@
                   d="M472.7 189.5c-13.26-8.43-29.83-14.56-48.08-17.93A16 16 0 01412 159.28c-7.86-34.51-24.6-64.13-49.15-86.58C334.15 46.45 296.21 32 256 32c-35.35 0-68 11.08-94.37 32a150.13 150.13 0 00-41.95 52.83A16.05 16.05 0 01108 125.8c-27.13 4.9-50.53 14.68-68.41 28.7C13.7 174.83 0 203.56 0 237.6 0 305 55.93 352 136 352h104V224.45c0-8.61 6.62-16 15.23-16.43A16 16 0 01272 224v128h124c72.64 0 116-34.24 116-91.6 0-30.05-13.59-54.57-39.3-70.9zM240 425.42l-36.7-36.64a16 16 0 00-22.6 22.65l64 63.89a16 16 0 0022.6 0l64-63.89a16 16 0 00-22.6-22.65L272 425.42V352h-32z"
                 />
               </svg>
-              &nbsp; Download results
+              &nbsp; Download Results
             </button>
           </div>
           <div>
             <button
+              @click="getPreviousUsers"
               class="rounded-lg bg-cst_gray-300 py-0.5 px-3 hover:bg-cst_primary-300 transition ease-in duration-500 hover:shadow-md hover:opacity-70 focus:outline-none"
             >
               <i class="fas fa-angle-left text-cst_black"></i>
             </button>
 
             <button
+              @click="getNextUsers"
               class="rounded-lg bg-cst_primary-400 py-0.5 px-3 border border-cst_gray-200 hover:bg-cst_primary-300 transition ease-in duration-500 hover:shadow-md hover:opacity-70 focus:outline-none ml-0.5"
             >
               <i class="fas fa-angle-right text-cst_white-300"></i>
@@ -220,12 +225,44 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-// import store from "../store";
+import { mapGetters, mapActions } from "vuex";
 export default {
   name: "Home",
+  data() {
+    return {
+      toggleOffCountry: false,
+      isDisabledCountryOption: 0,
+    };
+  },
   computed: {
-    ...mapGetters(["categoryName"]),
+    ...mapGetters(["categoryName", "allUsers", "nextPage", "previousPage"]),
+  },
+  methods: {
+    ...mapActions(["getAllUsers"]),
+    getNextUsers() {
+      // If there are users record and nextPage count is 1, increment page count
+      if (this.allUsers.length > 0 && parseInt(this.nextPage) === 1) {
+        store.commit("UPDATE_NEXT_PAGE", 1);
+      }
+      this.getAllUsers(this.nextPage).then(() => {
+        store.commit("UPDATE_NEXT_PAGE", 1);
+        store.commit("UPDATE_PREVIOUS_PAGE", 1);
+      });
+    },
+    getPreviousUsers() {
+      if (this.previousPage < 1) return;
+      this.getAllUsers(this.previousPage, "previous").then(() => {
+        if (parseInt(this.nextPage) < 2) return;
+        store.commit("UPDATE_NEXT_PAGE", -1);
+        store.commit("UPDATE_PREVIOUS_PAGE", -1);
+      });
+    },
+    disableCountryOption() {
+      this.isDisabledCountryOption = !this.isDisabledCountryOption;
+    },
+  },
+  mounted() {
+    this.getAllUsers();
   },
 };
 //Handle mobile menu toggle
@@ -240,6 +277,7 @@ hamburger?.addEventListener("click", () => {
 });
 // service worker registration
 import "../../public/sw-config";
+import store from "../store";
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker
     .register("sw-config.js")
