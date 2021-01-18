@@ -1,5 +1,9 @@
 <template>
-  <div class="mx-auto place-self-center mt-4 flex">
+  <div
+    class="mx-auto place-self-center mt-4 flex"
+    v-for="(user, index) in allUsers"
+    :key="index"
+  >
     <div
       class="w-full mx-auto rounded-xl shadow-xl sm:py-4 flex sm:space-y-0 sm:space-x-6 bg-cst_white-300"
     >
@@ -10,8 +14,8 @@
               class="border-4 lg:border-5 border-cst_teal-200 rounded-full max-h-16 w-16 lg:max-h-20 lg:w-20"
             >
               <img
-                class="block mx-auto sm:mx-0 sm:flex-shrink-0 w-full h-full"
-                src="../../public/img/dog-logo.png"
+                class="block mx-auto sm:mx-0 sm:flex-shrink-0 w-full h-full rounded-full"
+                :src="`${user.picture.thumbnail}`"
                 alt="User Avatar"
               />
             </div>
@@ -19,12 +23,14 @@
           <div class="w-full flex flex-col sm:text-left">
             <div class="lg:space-y-1">
               <p class="text-normal text-cst_primary-400 font-semibold">
-                Shalom Chioma
+                {{ user.name["first"] }} {{ user.name["last"] }}
               </p>
               <p
                 class="text-cst_primary-400 text-opacity-60 italic tracking-tighter font-light text-sm lg:text-base"
               >
-                9278 new road, kilcode, waterford
+                {{ user.location?.street?.number }}
+                {{ user.location?.street?.name }}, {{ user.location?.city }},
+                {{ user.location?.state }}
               </p>
             </div>
             <div
@@ -40,7 +46,7 @@
                     class="fas fa-envelope text-cst_gray-400 text-xs lg:text-base"
                   >
                   </i>
-                  <p>brad.gibson@example.com</p>
+                  <p>{{ user.email }}</p>
                 </span>
 
                 <span
@@ -64,12 +70,13 @@
                       ></path>
                     </svg>
                   </span>
-                  <p class="text-xs lg:text-sm">011-962-7516</p>
+                  <p class="text-xs lg:text-sm">{{ user.phone }}</p>
                 </span>
                 <router-link
                   :to="{ name: 'User' }"
                   tag="li"
                   class="rounded-lg bg-cst_teal-300 py-0.5 lg:py-1 px-1.5 lg:px-3 hover:bg-cst_primary-300 transition ease-in shadow-2xl duration-500 hover:shadow-md hover:opacity-70 focus:outline-none"
+                  @click="getUser"
                 >
                   <a
                     ><i
@@ -92,6 +99,7 @@ import store from "../store";
 
 export default {
   name: "Users",
+  props: ["allUsers"],
   computed: {
     ...mapGetters(["categoryName"]),
   },
