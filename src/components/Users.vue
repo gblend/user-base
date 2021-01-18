@@ -66,11 +66,17 @@
                   </span>
                   <p class="text-xs lg:text-sm">011-962-7516</p>
                 </span>
-                <button
-                  class="rounded-lg bg-cst_teal-300 py-0.5 lg:py-1 px-1.5 lg:px-3  hover:bg-cst_primary-300 transition ease-in shadow-2xl duration-500 hover:shadow-md hover:opacity-70 focus:outline-none"
+                <router-link
+                  :to="{ name: 'User' }"
+                  tag="li"
+                  class="rounded-lg bg-cst_teal-300 py-0.5 lg:py-1 px-1.5 lg:px-3 hover:bg-cst_primary-300 transition ease-in shadow-2xl duration-500 hover:shadow-md hover:opacity-70 focus:outline-none"
                 >
-                  <i class="fas fa-arrow-right text-sm text-cst_white-100"></i>
-                </button>
+                  <a
+                    ><i
+                      class="fas fa-arrow-right text-sm text-cst_white-100"
+                    ></i
+                  ></a>
+                </router-link>
               </div>
             </div>
           </div>
@@ -81,7 +87,19 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
+import store from "../store";
+
 export default {
-  name: "Users"
+  name: "Users",
+  computed: {
+    ...mapGetters(["categoryName"]),
+  },
+  methods: {
+    ...mapActions["SET_CATEGORY_NAME"],
+  },
+  mounted() {
+    store.commit("SET_CATEGORY_NAME", "All Users");
+  },
 };
 </script>
