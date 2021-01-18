@@ -7,7 +7,11 @@
       <div class="mt-4 w-full">
         <h3 class="text-4xl font-extralight">
           <span class="opacity-80 tracking-tighter">Hello,</span>
-          <span class="text-2xl font-bold tracking-tighter ml-1">Emerald</span>
+          <transition name="animate_name" appear>
+            <span class="text-2xl font-bold tracking-tighter ml-1"
+              >Emerald</span
+            >
+          </transition>
         </h3>
         <p class="opacity-60 tracking-normal text-xs font-light mt-3">
           Welcome to your dashboard, kindly sort through the user base
@@ -38,22 +42,29 @@
           <h4 class="opacity-70 tracking-tight">Show Users</h4>
           <div class="grid grid-cols-3 mt-4">
             <div class="flex flex-col w-3/4">
-              <a
-                href="#"
-                class="bg-cst_pink rounded-lg md:rounded-2xl md:h-20 h-12 flex justify-center items-center hover:bg-cst_primary-300 transition ease-in duration-500 hover:shadow-md hover:opacity-70 md:mt-1 shadow-xl"
-                ><i class="fas fa-users md:text-3xl"></i
-              ></a>
+              <transition name="all_users" appear>
+                <router-link
+                  :to="{ name: 'AllUsers' }"
+                  tag="li"
+                  class="bg-cst_pink rounded-lg md:rounded-2xl md:h-20 h-12 flex justify-center items-center hover:bg-cst_primary-300 transition ease-in duration-500 hover:shadow-md hover:opacity-70 md:mt-1 shadow-xl"
+                >
+                  <a><i class="fas fa-users md:text-3xl"></i></a>
+                </router-link>
+              </transition>
               <span
                 class="text-xs tracking-tight font-light ml-1 md:ml-3 mt-1 md:mt-3 opacity-70"
                 >All Users</span
               >
             </div>
             <div class="flex flex-col w-3/4 md:-ml-3">
-              <a
-                href="#"
-                class="md:m-1 bg-cst_teal-300 rounded-lg md:rounded-2xl h-12 md:h-16 flex justify-center items-center hover:bg-cst_primary-300 transition ease-in duration-500 hover:shadow-md hover:opacity-70 shadow-xl"
-                ><i class="fas fa-male md:text-3xl"></i
-              ></a>
+              <transition name="male_users" appear>
+                <router-link
+                  :to="{ name: 'MaleUsers' }"
+                  class="md:m-1 bg-cst_teal-300 rounded-lg md:rounded-2xl h-12 md:h-16 flex justify-center items-center hover:bg-cst_primary-300 transition ease-in duration-500 hover:shadow-md hover:opacity-70 shadow-xl"
+                >
+                  <a><i class="fas fa-male md:text-3xl"></i></a>
+                </router-link>
+              </transition>
               <span
                 class="text-xs tracking-tight font-light mt-2 opacity-70 ml-2"
                 >Male Users</span
@@ -61,12 +72,15 @@
             </div>
 
             <div class="flex flex-col w-3/4 md:-ml-3">
-              <a
-                href="#"
-                class="md:m-1 bg-cst_indigo rounded-lg md:rounded-2xl h-12 md:h-16 flex justify-center items-center hover:bg-cst_primary-300 transition ease-in duration-500 hover:shadow-md hover:opacity-70 transform hover:scale-125 shadow-xl"
-              >
-                <i class="fas fa-female md:text-3xl"></i
-              ></a>
+              <transition name="female_users" appear>
+                <router-link
+                  :to="{ name: 'FemaleUsers' }"
+                  tag="li"
+                  class="md:m-1 bg-cst_indigo rounded-lg md:rounded-2xl h-12 md:h-16 flex justify-center items-center hover:bg-cst_primary-300 transition ease-in duration-500 hover:shadow-md hover:opacity-70 transform hover:scale-125 shadow-xl"
+                >
+                  <a><i class="fas fa-female md:text-3xl"></i></a>
+                </router-link>
+              </transition>
               <span
                 class="text-xs tracking-tight font-light mt-2 opacity-70 ml-2"
                 >Female Users</span
@@ -87,7 +101,7 @@
       <div class="mx-auto justify-center items-center pt-2">
         <div class="flex justify-between items-center">
           <h3 class="font-bold leading-8 text-2xl tracking-tighter">
-            All Users
+            {{ categoryName }}
           </h3>
           <div
             class="md:hidden text-cst_primary-100 cursor-pointer"
@@ -119,8 +133,7 @@
                   name="search-list"
                   id="search-list"
                   placeholder="Find in list"
-                  class="tracking-tight bg-cst_primary-50 hover:opacity-60 text-sm hover:bg-cst_primary-100 rounded-r-full p-1.5 focus:outline-none focus:bg-cst_primary-100 transition ease-out duration-500 w-full placeholder-cst_black  placeholder-opacity-50
-                                    "
+                  class="tracking-tight bg-cst_primary-50 hover:opacity-60 text-sm hover:bg-cst_primary-100 rounded-r-full p-1.5 focus:outline-none focus:bg-cst_primary-100 transition ease-out duration-500 w-full placeholder-cst_black placeholder-opacity-50"
                 />
               </form>
             </div>
@@ -159,11 +172,11 @@
         </div>
         <!-- Filters End  -->
         <!-- Dynamic Content Begin  -->
-        <router-view />
+        <router-view class="relative" />
         <!-- Dynamic Content End  -->
         <!-- Footer Section Begin  -->
         <div
-          class="inset-x-0 bottom-10 mx-auto w-full pt-4 px-4 place-self-center flex justify-between"
+          class="absolute bottom-4 pt-4 px-4 items-center right-0 flex justify-between w-1/2"
         >
           <div>
             <button
@@ -207,8 +220,13 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+// import store from "../store";
 export default {
-  name: "Home"
+  name: "Home",
+  computed: {
+    ...mapGetters(["categoryName"]),
+  },
 };
 //Handle mobile menu toggle
 const hamburger = document.querySelector("#hamburger");
@@ -220,4 +238,94 @@ hamburger?.addEventListener("click", () => {
     side_menu.classList.add("hidden");
   }
 });
+// service worker registration
+import "../../public/sw-config";
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker
+    .register("sw-config.js")
+    .then(function () {})
+    .catch(function (err) {
+      console.log("This happened: ", err);
+    });
+}
 </script>
+<style>
+/* ----- Username Transition ------*/
+.animate_name-enter-active {
+  animation: slide-in 6s ease-out forwards;
+}
+
+.animate_name-leave-active {
+  animation: slide-out 6s ease-out forwards;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(5px);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(25px);
+    opacity: 0;
+  }
+}
+
+/*  ------- Left SideBar Navigation Links Transition------*/
+.all_users-enter-active {
+  animation: slide-in 5s ease-out both;
+}
+
+.all_users-leave-active {
+  animation: slide-out 5s ease-out forwards;
+}
+
+.male_users-enter-active {
+  animation: slide-in 3s ease-out forwards;
+}
+
+.male_users-leave-active {
+  animation: slide-out 3s ease-out both;
+}
+
+.female_users-enter-active {
+  animation: slide-in 4s ease-out both;
+}
+
+.female_users-leave-active {
+  animation: slide-out 4s ease-out forwards;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translate3d(13px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-18px);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out {
+  from {
+    transform: translateY(-13px);
+    opacity: 1;
+    transform-style: preserve-3d;
+  }
+  to {
+    transform: translateY(18px);
+    opacity: 0;
+  }
+}
+</style>
