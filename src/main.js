@@ -9,9 +9,9 @@ app.use(store);
 app.use(router);
 app.config.productionTip = true;
 const { isNavigationFailure, NavigationFailureType } = router;
-router.replace("/users").catch(e => {
+router.replace("/all-users").catch((e) => {
   if (!isNavigationFailure(e, NavigationFailureType.redirected)) {
-    Promise.reject(e).then(r => {
+    Promise.reject(e).then((r) => {
       return r;
     });
   }
