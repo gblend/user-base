@@ -2,33 +2,49 @@ import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
   {
-    path: "/users",
-    name: "Users",
+    path: "/all-users",
+    name: "AllUsers",
     // route level code-splitting
     // this generates a separate chunk (users.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../components/Users.vue")
+      import(/* webpackChunkName: "about" */ "../components/Users.vue"),
+  },
+  {
+    path: "/male-users",
+    name: "MaleUsers",
+    component: () => import("../components/MaleUsers"),
+  },
+  {
+    path: "/female-users",
+    name: "FemaleUsers",
+    component: () => import("../components/FemaleUsers"),
+  },
+  {
+    path: "/country",
+    name: "Country",
+    component: () => import("../components/Country"),
   },
   {
     path: "/user",
-    name: "user",
-    component: () => import("../components/User")
+    name: "User",
+    component: () => import("../components/User"),
   },
   {
-    path: "/search",
+    path: "/search-results",
     name: "SearchResults",
-    component: () => import("../components/SearchResults")
+    component: () => import("../components/SearchResults"),
   },
   {
-    path: "*",
+    path: "/*",
     name: "redirect",
-    redirect: "/users"
-  }
+    redirect: "/users",
+  },
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
+  mode: "abstract",
   routes,
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
@@ -36,7 +52,7 @@ const router = createRouter({
     } else {
       return { x: 0, y: 0 };
     }
-  }
+  },
 });
 
 export default router;
