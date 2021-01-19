@@ -31,6 +31,11 @@ const routes = [
     component: () => import("../components/User"),
   },
   {
+    path: "/filter-user",
+    name: "FilterUser",
+    component: () => import("../components/FilterUser"),
+  },
+  {
     path: "/search-results",
     name: "SearchResults",
     component: () => import("../components/SearchResults"),

@@ -75,7 +75,7 @@
                   <p class="text-xs lg:text-sm">{{ filteredUser.phone }}</p>
                 </span>
                 <router-link
-                  :to="{ name: 'User', params: { userIndex: index } }"
+                  :to="{ name: 'FilterUser', params: { userIndex: index } }"
                   tag="li"
                   class="rounded-lg bg-cst_teal-300 py-0.5 lg:py-1 px-1.5 lg:px-3 hover:bg-cst_primary-300 transition ease-in shadow-2xl duration-500 hover:shadow-md hover:opacity-70 focus:outline-none"
                 >

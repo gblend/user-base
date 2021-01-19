@@ -13,6 +13,7 @@ export default createStore({
     seed: "userBase",
     searchTerm: "",
     user: {},
+    filterUser: {},
     notification: false,
     countryId: "au",
     countries: [
@@ -48,6 +49,7 @@ export default createStore({
     countries: (state) => state.countries,
     countryId: (state) => state.countryId,
     searchTerm: (state) => state.searchTerm,
+    filterUser: (state) => state.filterUser,
   },
   mutations: {
     SET_CATEGORY_NAME(state, payload) {
@@ -70,6 +72,11 @@ export default createStore({
     },
     SET_USER(state, userIndex) {
       state.user = state.allUsers.filter(function (entry, index) {
+        return index === parseInt(userIndex);
+      });
+    },
+    SET_FILTER_USER(state, userIndex) {
+      state.filterUser = state.filteredUsers.filter(function (entry, index) {
         return index === parseInt(userIndex);
       });
     },
