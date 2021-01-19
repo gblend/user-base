@@ -104,6 +104,7 @@
     <div class="lg:w-11/12 px-1 mx-auto py-4">
       <!-- Content Begin  -->
       <div class="mx-auto justify-center items-center pt-2">
+        <notification />
         <transition name="slide_view" mode="out-in" appear>
           <div>
             <h3 class="font-bold leading-8 text-2xl tracking-tighter mt-8">
