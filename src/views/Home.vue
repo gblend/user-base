@@ -104,6 +104,96 @@
     <div class="lg:w-11/12 px-1 mx-auto py-4">
       <!-- Content Begin  -->
       <div class="mx-auto justify-center items-center pt-2">
+        <!--        Mobile Menu Begin-->
+        <div
+          class="bg-gray-100 border-gray-400 border-b-2 py-2 hidden"
+          id="left-side-bar"
+        >
+          <div class="w-full">
+            <h3 class="text-4xl font-extralight">
+              <span class="opacity-80 tracking-tighter">Hello,</span>
+              <transition name="animate_name" appear>
+                <span class="text-2xl font-bold tracking-tighter ml-1"
+                  >Emerald</span
+                >
+              </transition>
+            </h3>
+            <p class="opacity-60 tracking-normal text-xs font-light mt-3">
+              Welcome to your dashboard, kindly sort through the user base
+            </p>
+          </div>
+          <div class="mt-5 w-full">
+            <div class="md:w-3/4">
+              <h4 class="opacity-70 tracking-tight">Show Users</h4>
+              <div
+                class="grid grid-cols-3 mt-4 flex justify-center items-center"
+              >
+                <div class="flex flex-col w-3/6 mx-auto">
+                  <transition name="all_users" appear>
+                    <router-link
+                      :to="{ name: 'AllUsers' }"
+                      tag="li"
+                      exact-active-class="transform scale-125"
+                      class="bg-cst_pink rounded-lg md:rounded-2xl md:h-16 h-10 flex justify-center items-center hover:bg-cst_primary-300 transition ease-in duration-500 hover:shadow-md hover:opacity-70 md:mt-1 shadow-xl"
+                    >
+                      <a
+                        ><i
+                          class="fas fa-users md:text-3xl text-cst_white-100"
+                        ></i
+                      ></a>
+                    </router-link>
+                  </transition>
+                  <span
+                    class="text-xs tracking-tight font-light ml-1 md:ml-3 mt-1 md:mt-3.5 opacity-70"
+                    >All Users</span
+                  >
+                </div>
+                <div class="flex flex-col w-3/6 mx-auto">
+                  <transition name="male_users" appear>
+                    <router-link
+                      :to="{ name: 'MaleUsers' }"
+                      exact-active-class="transform scale-125"
+                      tag="li"
+                      class="md:m-1 bg-cst_teal-300 rounded-lg md:rounded-2xl h-10 md:h-16 flex justify-center items-center hover:bg-cst_primary-300 transition ease-in duration-500 hover:shadow-md hover:opacity-70 shadow-xl"
+                    >
+                      <a
+                        ><i
+                          class="fas fa-male md:text-3xl text-cst_white-100"
+                        ></i
+                      ></a>
+                    </router-link>
+                  </transition>
+                  <span
+                    class="text-xs tracking-tight font-light mt-2.5 opacity-70 ml-2"
+                    >Male Users</span
+                  >
+                </div>
+
+                <div class="flex flex-col w-3/6 md:-ml-3 mx-auto">
+                  <transition name="female_users" appear>
+                    <router-link
+                      :to="{ name: 'FemaleUsers' }"
+                      exact-active-class="transform scale-125"
+                      tag="li"
+                      class="md:m-1 bg-cst_indigo rounded-lg md:rounded-2xl h-10 md:h-16 flex justify-center items-center hover:bg-cst_primary-300 transition ease-in duration-500 hover:shadow-md hover:opacity-70 shadow-xl"
+                    >
+                      <a
+                        ><i
+                          class="fas fa-female md:text-3xl text-cst_white-100"
+                        ></i
+                      ></a>
+                    </router-link>
+                  </transition>
+                  <span
+                    class="text-xs tracking-tight font-light mt-2.5 opacity-70 ml-2"
+                    >Female Users</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--        Mobile Menu End-->
         <notification />
         <transition name="slide_view" mode="out-in" appear>
           <div>
