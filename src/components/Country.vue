@@ -7,20 +7,23 @@ import Users from "./Users";
 import { mapActions, mapGetters } from "vuex";
 import store from "../store";
 export default {
-  name: "Countries",
+  name: "Country",
   components: {
     Users,
   },
   computed: {
-    ...mapGetters(["categoryName"]),
+    ...mapGetters(["categoryName", "allUsers"]),
   },
 
   methods: {
-    ...mapActions["SET_CATEGORY_NAME"],
+    ...mapActions(["SET_CATEGORY_NAME", "getCountryUsers"]),
   },
 
   mounted() {
-    store.commit("SET_CATEGORY_NAME", "User");
+    store.commit("SET_CATEGORY_NAME", "Country List");
+  },
+  created() {
+    this.getCountryUsers();
   },
 };
 </script>
