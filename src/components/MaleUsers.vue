@@ -12,14 +12,17 @@ export default {
     Users,
   },
   computed: {
-    ...mapGetters(["categoryName"]),
+    ...mapGetters(["categoryName", "allUsers"]),
   },
 
   methods: {
-    ...mapActions["SET_CATEGORY_NAME"],
+    ...mapActions(["getMaleUsers"]),
   },
   mounted() {
     store.commit("SET_CATEGORY_NAME", "Male Users");
+  },
+  created() {
+    this.getMaleUsers();
   },
 };
 </script>
