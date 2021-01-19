@@ -104,6 +104,14 @@
     <div class="lg:w-11/12 px-1 mx-auto py-4">
       <!-- Content Begin  -->
       <div class="mx-auto justify-center items-center pt-2">
+        <!--        Hamburger Toggle for Mobile-->
+        <div
+          @click="toggleSideMenu()"
+          class="md:hidden text-cst_primary-100 cursor-pointer flex justify-end items-end p-2"
+          id="hamburger"
+        >
+          <i class="fas fa-bars text-3xl"></i>
+        </div>
         <!--        Mobile Menu Begin-->
         <div
           class="bg-gray-100 border-gray-400 border-b-2 py-2 hidden"
