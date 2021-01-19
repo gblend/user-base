@@ -38,7 +38,7 @@ const routes = [
   {
     path: "/*",
     name: "redirect",
-    redirect: "/users",
+    redirect: "/all-users",
   },
 ];
 
