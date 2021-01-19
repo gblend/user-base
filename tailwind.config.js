@@ -1,5 +1,17 @@
 module.exports = {
-  purge: [],
+  purge: [
+    "./src/main.js",
+    "./src/views/Home.vue",
+    "./src/App.vue",
+    "./src/components/Country.vue",
+    "./src/components/FemaleUsers.vue",
+    "./src/components/MaleUsers.vue",
+    "./src/components/Notification.vue",
+    "./src/components/SearchResults.vue",
+    "./src/components/User.vue",
+    "./src/components/Users.vue",
+    "./public/index.html",
+  ],
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
