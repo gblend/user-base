@@ -186,6 +186,52 @@ export default createStore({
           }
         });
     },
+
+    downloadUserList({ getters }) {
+      let csvHeader =
+        "First Name," +
+        "Last Name," +
+        "Address," +
+        "Email," +
+        "Phone," +
+        "Mobile" +
+        "\r\n";
+      const usersObj = JSON.parse(JSON.stringify(getters.allUsers));
+
+      let csvContent = usersObj.map((user) => {
+        return (
+          user.name["first"] +
+          "," +
+          user.name["last"] +
+          "," +
+          user.location?.street?.number +
+          " " +
+          user.location?.street?.name +
+          " " +
+          user.location?.city +
+          " " +
+          user.location?.state +
+          "," +
+          user.email +
+          "," +
+          user.phone +
+          "," +
+          user.cell
+        );
+      });
+      let csvFile = csvHeader + csvContent.join("\n");
+      let yyyy = new Date().getFullYear();
+      let mm = new Date().getMonth() + 1;
+      let dd = new Date().getDate();
+      let date = yyyy + "-" + mm + "-" + dd;
+      let fileName = "User_List_" + date + ".csv";
+      let fileURL = window.URL.createObjectURL(new Blob([csvFile]));
+      let fileLink = document.createElement("a");
+      fileLink.href = fileURL;
+      fileLink.setAttribute("download", fileName);
+      document.body.appendChild(fileLink);
+      fileLink.click();
+    },
   },
   modules: {},
 });
