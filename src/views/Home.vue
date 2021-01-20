@@ -107,7 +107,7 @@
         <!--        Hamburger Toggle for Mobile-->
         <div
           @click="toggleSideMenu()"
-          class="md:hidden text-cst_primary-100 cursor-pointer flex justify-end items-end p-2"
+          class="md:hidden text-cst_primary-100 cursor-pointer flex justify-end items-end p-2 noSelect"
         >
           <i class="fas fa-bars text-3xl"></i>
         </div>
@@ -630,5 +630,14 @@ if ("serviceWorker" in navigator) {
     transform: translateY(-30px);
     opacity: 0;
   }
+}
+
+.noSelect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 </style>
