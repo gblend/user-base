@@ -479,7 +479,11 @@ export default {
   watch: {
     // eslint-disable-next-line no-unused-vars
     $route(to, from) {
-      if (to.name === "User" || to.name === "SearchResults") {
+      if (
+        to.name === "User" ||
+        to.name === "SearchResults" ||
+        to.name === "FilterUser"
+      ) {
         this.footerButtonsDisabled = 1;
         this.footerButtonsOpacity = true;
       } else {
