@@ -7,8 +7,7 @@ record retrieval seamless. The users' information accessible includes but not li
 address, age, country, ect.
 
 
-####Link To Deployed Site
-[Check Deployed Site](https://users-base.herokuapp.com/all-users)
+#### Link To Deployed Site [Check Deployed Site](https://users-base.herokuapp.com/all-users)
 
 
 ## Project setup
