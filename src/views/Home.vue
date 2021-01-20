@@ -201,7 +201,6 @@
           </div>
         </div>
         <!--        Mobile Menu End-->
-        <notification />
         <transition name="slide_view" mode="out-in" appear>
           <div>
             <h3 class="font-bold leading-8 text-2xl tracking-tighter mt-8">
@@ -283,6 +282,7 @@
         </transition>
         <!-- Filters End  -->
         <!-- Dynamic Content Begin  -->
+        <notification-msg />
         <router-view :allUsers="allUsers" />
         <!-- Dynamic Content End  -->
         <!-- Footer Section Begin  -->
@@ -367,7 +367,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import store from "../store";
-import Notification from "../components/Notification";
+import NotificationMsg from "../components/Notification";
 export default {
   name: "Home",
   data() {
@@ -388,7 +388,7 @@ export default {
     };
   },
   components: {
-    Notification,
+    NotificationMsg,
   },
   computed: {
     ...mapGetters([
@@ -486,6 +486,7 @@ export default {
         this.footerButtonsDisabled = 0;
         this.footerButtonsOpacity = false;
       }
+      store.commit("UPDATE_NOTIFICATION_STATUS", false);
       if (to.name === "AllUsers") {
         this.getAllUsers();
       }

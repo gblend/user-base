@@ -94,7 +94,7 @@ export default createStore({
     },
   },
   actions: {
-    getAllUsers({ commit, state }, page = 1) {
+    getAllUsers({ commit, state, getters }, page = 1) {
       axios
         .get(
           "?page=" +
@@ -111,6 +111,11 @@ export default createStore({
             commit("UPDATE_NOTIFICATION_STATUS", true);
           } else {
             return Promise.reject(err);
+          }
+        })
+        .finally(() => {
+          if (!getters.allUsers.length) {
+            commit("UPDATE_NOTIFICATION_STATUS", true);
           }
         });
     },
