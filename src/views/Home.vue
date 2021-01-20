@@ -108,7 +108,6 @@
         <div
           @click="toggleSideMenu()"
           class="md:hidden text-cst_primary-100 cursor-pointer flex justify-end items-end p-2"
-          id="hamburger"
         >
           <i class="fas fa-bars text-3xl"></i>
         </div>
@@ -136,7 +135,7 @@
               <div
                 class="grid grid-cols-3 mt-4 flex justify-center items-center"
               >
-                <div class="flex flex-col w-3/6 mx-auto">
+                <div class="flex flex-col w-3/6 mx-auto -mt-5">
                   <transition name="all_users" appear>
                     <router-link
                       :to="{ name: 'AllUsers' }"
