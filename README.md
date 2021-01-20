@@ -1,4 +1,4 @@
-# User-Base [![Build Status](https://travis-ci.com/gblend/user-base.svg?token=nAPp6xdHhmekbobWYDps&branch=master)](https://travis-ci.com/gblend/user-base)
+# User-Base [![Build Status](https://travis-ci.com/gblend/user-base.svg?token=nAPp6xdHhmekbobWYDps&branch=master)](https://travis-ci.com/gblend/user-base)  Tests: Not completed
 
 
 **Ubase** is a dashboard for accessing random users' directory information. Ubase dashboard houses features such as 
