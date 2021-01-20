@@ -13,7 +13,7 @@
             >
           </transition>
         </h3>
-        <p class="opacity-60 tracking-normal text-xs font-light mt-3">
+        <p class="opacity-60 text-xs font-light mt-3">
           Welcome to your dashboard, kindly sort through the user base
         </p>
       </div>
@@ -125,7 +125,7 @@
                 >
               </transition>
             </h3>
-            <p class="opacity-60 tracking-normal text-xs font-light mt-3">
+            <p class="opacity-60 text-xs font-light mt-3">
               Welcome to your dashboard, kindly sort through the user base
             </p>
           </div>
@@ -203,7 +203,7 @@
         <!--        Mobile Menu End-->
         <transition name="slide_view" mode="out-in" appear>
           <div>
-            <h3 class="font-bold leading-8 text-2xl tracking-tighter mt-8">
+            <h3 class="font-bold text-2xl tracking-tighter mt-8">
               {{ categoryName }}
             </h3>
             <!-- Filters Begin  -->
@@ -271,8 +271,7 @@
                       class="toggle-label block overflow-hidden h-4 w-8 rounded-full bg-cst_teal-300 cursor-pointer"
                     ></label>
                   </div>
-                  <span
-                    class="text-cst_black opacity-60 text-sm tracking-tighter"
+                  <span class="opacity-60 text-sm tracking-tighter"
                     >Show Country</span
                   >
                 </div>

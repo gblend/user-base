@@ -22,7 +22,7 @@
           </div>
           <div class="w-full flex flex-col sm:text-left">
             <div class="lg:space-y-1">
-              <p class="text-normal text-cst_primary-400 font-semibold">
+              <p class="text-cst_primary-400 font-semibold">
                 {{ user.name["first"] }} {{ user.name["last"] }}
               </p>
               <p
@@ -34,7 +34,7 @@
               </p>
             </div>
             <div
-              class="w-full text-cst_primary-400 text-opacity-40 tracking-tighter text-sm space-y-1"
+              class="text-cst_primary-400 text-opacity-40 tracking-tighter text-sm space-y-1"
             >
               <div
                 class="flex w-full space-x-1 lg:space-x-4 justify-between items-center"
